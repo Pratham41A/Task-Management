@@ -349,3 +349,10 @@ POST /api/auth/forgotpassword 200 37 - 3401.417 ms
 POST /api/auth/resetPassword?email=U2FsdGVkX1%2F5rm%2BKjhfXPK4PjZioo9lk2px2hsBny6tnu5PQblLpwY07epieBqnK 500 43 - 449.398 ms
 POST /api/auth/resetPassword?email=U2FsdGVkX1%2F5rm%2BKjhfXPK4PjZioo9lk2px2hsBny6tnu5PQblLpwY07epieBqnK 200 41 - 257.483 ms
 POST /api/auth/resetPassword?email=U2FsdGVkX1%2F5rm%2BKjhfXPK4PjZioo9lk2px2hsBny6tnu5PQblLpwY07epieBqnK 500 63 - 2.044 ms
+POST /api/auth/register 500 483 - 242.357 ms
+POST /api/auth/register 201 29 - 259.639 ms
+POST /api/auth/register 500 496 - 86.464 ms
+POST /api/auth/register 201 29 - 235.392 ms
+POST /api/auth/register 400 26 - 55.653 ms
+POST /api/auth/register 400 26 - 79.203 ms
+POST /api/auth/register 400 26 - 65.883 ms

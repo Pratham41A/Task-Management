@@ -12,6 +12,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import {scheduler} from "./service/scheduler.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const { config } = dotenv;
 config();
@@ -30,9 +32,12 @@ const apiRequestWriteStream = fs.createWriteStream("ServerRequests.log", { flags
    
 
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-
-
+server.get('/api/log', (req, res) => {
+  res.sendFile(path.join(__dirname, 'ServerRequests.log'));
+});
   server.use(helmet());
   //Tackle Web Vulnerabilities by setting Response Headers
   server.use(morgan("tiny", { stream:apiRequestWriteStream }));
