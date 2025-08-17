@@ -45,11 +45,11 @@ server.get('/api/log', (req, res) => {
   server.use(limiter);
   server.use(e.json());
   server.use(cookieParser());
-  server.use(
-    cors({
-      origin: "*"
-    })
-  );
+server.use(cors({
+  origin: 'https://localhost:5173',
+  credentials: true,
+}));
+
 
   server.use("/api/auth", authRouter);
   server.use("/api/task", taskRouter);
