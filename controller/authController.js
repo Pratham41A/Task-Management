@@ -131,3 +131,38 @@ export async function resetPassword(req, res) {
     res.status(500).json({ error: err.message });
   }
 }
+
+
+
+
+
+export async function check(req, res) {
+  try {
+    const oldToken = req?.cookies?.token;
+
+    if (!oldToken) {
+      return res.status(401).json({ error: 'Not Authenticated' });
+    }
+
+
+    const decoded = jwt.verify(oldToken, process.env.JWT_SECRET);
+
+
+    const newToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+
+    res.cookie('token', newToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'None',
+      maxAge: 1000 * 60 * 60, 
+    });
+    res.set('Authorization', `Bearer ${newToken}`);
+
+    return res.status(200).json({ message: 'Authenticated' });
+  } catch (err) {
+    return res.status(401).json({ error: err.message });
+  }
+}
