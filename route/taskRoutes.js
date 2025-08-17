@@ -11,7 +11,6 @@ import  {validateCreate, validateDelete, validateUpdate } from "../middleware/ta
 const taskRouter = e.Router();
 
 taskRouter.post("/createTask", auth, validateCreate, createTask);
-
 taskRouter.get("/getTasks", auth, getTasks);
 taskRouter.patch("/updateTask", auth, validateUpdate, updateTask);
 taskRouter.delete("/deleteTask", auth, validateDelete, deleteTask);

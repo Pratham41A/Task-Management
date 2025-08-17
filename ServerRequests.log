@@ -356,3 +356,4 @@ POST /api/auth/register 201 29 - 235.392 ms
 POST /api/auth/register 400 26 - 55.653 ms
 POST /api/auth/register 400 26 - 79.203 ms
 POST /api/auth/register 400 26 - 65.883 ms
+GET /favicon.ico 404 150 - 4.146 ms

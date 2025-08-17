@@ -10,9 +10,12 @@ export async function register(req, res) {
     try {
   var { username, email, password } = req.body;
 username=sanitize(username)
-
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
+ const existingEmail = await User.findOne({ username });
+    if (existingEmail) {
+      return res.status(400).json({ error: "Existing Username" });
+    }
+    const existingUsername = await User.findOne({ email });
+    if (existingUsername) {
       return res.status(400).json({ error: "Existing Email" });
     }
 
