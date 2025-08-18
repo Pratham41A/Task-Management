@@ -26,3 +26,20 @@ if(tasks.length === 0) {
   });
   await Promise.all(nearExpiryTasksMails)
 }
+
+export async function expireTasks() {
+  try {
+    const now = new Date();
+
+     await Task.updateMany(
+      {
+        status: "Pending",
+        expiryDateTime: { $lt: now },
+      },
+      { $set: { status: "Expired" } }
+    );
+
+  } catch (err) {
+    console.error("Error updating expired tasks:", err.message);
+  }
+}

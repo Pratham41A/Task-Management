@@ -31,18 +31,18 @@ const taskSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['Pending', 'Completed'],
+    enum: ['Pending', 'Completed','Expired'],
     default: 'Pending',
   },
   createdBy: {
     type: Types.ObjectId,
     ref: 'User',
     required: [true, "Created by is required"]
-  },
+  },  
   updatedBy: {
     type: Types.ObjectId,
     ref: 'User',
-    required: [true, "Created by is required"]
+    required: [true, "Updated by is required"]
   },
   assignedTo: [{
     type: Types.ObjectId,
