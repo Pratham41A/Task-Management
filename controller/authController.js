@@ -166,3 +166,15 @@ export async function check(req, res) {
     return res.status(401).json({ error: err.message });
   }
 }
+
+
+export async function getProfile(){
+  try{
+const {userId}=req
+     const user = await User.findById({ userId });
+     return {id:user._id,name:user.username}
+  }
+  catch(err){
+    console.error('Error Getting Profile',err.message)
+  }
+}
