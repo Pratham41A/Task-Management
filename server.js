@@ -46,9 +46,10 @@ server.get('/api/log', (req, res) => {
   server.use(e.json());
   server.use(cookieParser());
 server.use(cors({
-  origin: 'https://localhost:5173',
+  origin:true,
   credentials: true,
 }));
+server.options('*', cors()); 
 
 
   server.use("/api/auth", authRouter);
