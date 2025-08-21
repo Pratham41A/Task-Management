@@ -37,6 +37,8 @@ const userSchema = new Schema(
       transform(document, object, options) {
         delete object.password;
         delete object.__v;
+        delete object.createdAt;
+        delete object.updatedAt;
         return object;
       },
     },

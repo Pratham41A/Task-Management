@@ -168,11 +168,11 @@ export async function check(req, res) {
 }
 
 
-export async function getProfile(){
+export async function getProfile(req,res){
   try{
 const {userId}=req
-     const user = await User.findById({ userId });
-     return {id:user._id,name:user.username}
+     const user = await User.findById(userId);
+     return res.json(user)
   }
   catch(err){
     console.error('Error Getting Profile',err.message)

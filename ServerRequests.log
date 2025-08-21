@@ -439,3 +439,16 @@ POST /api/auth/login 200 30 - 258.104 ms
 POST /api/auth/login 200 30 - 354.363 ms
 POST /api/auth/login 200 30 - 419.792 ms
 POST /api/auth/login 200 30 - 273.185 ms
+OPTIONS /api/auth/profile 204 0 - 5.557 ms
+GET /api/auth/profile 500 2020 - 3.015 ms
+OPTIONS /api/auth/profile 204 0 - 0.998 ms
+GET /api/auth/profile 500 2020 - 1.067 ms
+GET /api/auth/profile 500 2020 - 304.262 ms
+OPTIONS /api/auth/profile 204 0 - 5.746 ms
+GET /api/auth/profile 500 2020 - 2.788 ms
+OPTIONS /api/auth/profile 204 0 - 5.203 ms
+GET /api/auth/profile 200 115 - 49.404 ms
+OPTIONS /api/auth/profile 204 0 - 6.564 ms
+GET /api/auth/profile 304 - - 55.251 ms
+OPTIONS /api/auth/profile 204 0 - 5.866 ms
+GET /api/auth/profile 500 2020 - 3.570 ms
