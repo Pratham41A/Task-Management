@@ -24,12 +24,12 @@ export async function getUsers(req, res, next) {
 
       try {
         const user = await User.findOne({ _id: userId });
-        if (user.username === 'ADMIN' && field===null) {
+        if (user.username === 'ADMIN') {
            const users = await User.find(q).lean();
            return res.status(200).json({message:users});
         }
         if ( field==='_id') {
-    const users = await User.find(q).lean();
+    const users = await User.findById(q).lean();
      return res.status(200).json({message:users});
         }
   
