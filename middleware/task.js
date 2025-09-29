@@ -167,3 +167,24 @@ export async function validateDelete(req, res, next) {
      return res.status(500).json({ error: error.message });
   }
 }
+
+export async function validateGetTaskById(req, res, next) {
+
+  try {
+    await param('id')
+      .notEmpty().withMessage('ID is required.')
+      .isMongoId().withMessage('ID must be a valid MongoDB ObjectId.')
+      .run(req);
+
+    const validationErrors = validationResult(req).array();
+    const errors = validationErrors.map(error => error.msg);
+
+    if (errors.length > 0) {
+      return res.status(400).json({ error: errors.join('\n') });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}

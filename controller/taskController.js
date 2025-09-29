@@ -85,3 +85,17 @@ if(!task){
     return res.status(400).json({ error: error.message });
   }
 }
+export async function getTaskById(req, res) {
+  const { id } = sanitize(req.params);
+   const { userId } = req;
+
+  try {
+    const task = await Task.findOne({ _id: id, $or: [{ createdBy: userId }, { assignedTo: userId }] }).lean();
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    return res.status(200).json({ message: task });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+}
