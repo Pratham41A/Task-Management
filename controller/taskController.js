@@ -20,7 +20,7 @@ body = {...body,updatedBy: userId};
 
 
   try {
-    const task=Task.findOne({_id:id, $or: [
+    const task=await Task.findOne({_id:id, $or: [
         { createdBy: userId },
         { assignedTo: userId },
       ]}).lean()
@@ -70,7 +70,7 @@ export async function deleteTask(req, res) {
   const { userId } = req
 
   try {
-const task=Task.findOne({_id:id,createdBy: userId}).lean()
+const task=await Task.findOne({_id:id,createdBy: userId}).lean()
 if(!task){
   return res.status(400).json({ error: 'Task Not Found or Not Eligible' });
 }
