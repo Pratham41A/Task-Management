@@ -7,10 +7,10 @@ import rateLimit from 'express-rate-limit';
 
 
  const verifyForgotPasswordOtpRateLimiter = rateLimit({
-  windowMs: 900000, 
+  windowMs: Number(eval(process.env.OTP_VERIFY_API_TRY_TIME)), 
   max: 5, 
   handler: (req, res) => {
-   return res.status(429).json({ error: 'Too many OTP verification attempts from this IP, please try again after 15 minutes.' });
+   return res.status(429).json({ error: 'Too many OTP verification attempts from this IP, please try again after few minutes.' });
   },
   standardHeaders: true,//Response Headers
   legacyHeaders: true,//Response Headers

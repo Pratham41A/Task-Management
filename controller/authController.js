@@ -85,7 +85,7 @@ export async function login(req, res) {
       httpOnly: true, // Prevents Client-Side JavaScript Access
       secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
-      maxAge: Number(eval(process.env.COOKIE_JWT_EXPIRY)), 
+      maxAge: Number(eval(process.env.COOKIE_EXPIRY)), 
     });
      res.set('Authorization', `Bearer ${signedToken}`);
 
@@ -195,7 +195,7 @@ const signedToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       httpOnly: true, // Prevents Client-Side JavaScript Access
       secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
-      maxAge: Number(eval(process.env.COOKIE_JWT_EXPIRY)), 
+      maxAge: Number(eval(process.env.COOKIE_EXPIRY)), 
     });
      res.set('Authorization', `Bearer ${signedToken}`);
 
