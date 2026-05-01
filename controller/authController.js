@@ -83,7 +83,7 @@ export async function login(req, res) {
 
     res.cookie("token", signedToken, {
       httpOnly: true, // Prevents Client-Side JavaScript Access
-      secure: Boolean(process.env.COOKIE_SECURE),
+      secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
       maxAge: Number(eval(process.env.COOKIE_JWT_EXPIRY)), 
     });
@@ -173,7 +173,7 @@ await Otp.findOneAndDelete({email})
 
     res.clearCookie("token", {
       httpOnly: true,
-      secure: Boolean(process.env.COOKIE_SECURE),
+      secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
     });
 
@@ -193,7 +193,7 @@ const signedToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
 
     res.cookie("token", signedToken, {
       httpOnly: true, // Prevents Client-Side JavaScript Access
-      secure: Boolean(process.env.COOKIE_SECURE),
+      secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
       maxAge: Number(eval(process.env.COOKIE_JWT_EXPIRY)), 
     });
@@ -216,7 +216,7 @@ export async function logout(req, res) {
 
     res.clearCookie("token", {
       httpOnly: true,
-      secure: Boolean(process.env.COOKIE_SECURE),
+      secure: process.env.COOKIE_SECURE === "TRUE",
       sameSite: process.env.COOKIE_SAME_SITE,
     });
   return  res.status(200).json({ message: "Logout" });
