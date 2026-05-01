@@ -102,7 +102,7 @@ if(otpSent){
   return res.status(400).json({error:'Otp Already Sent'})
 }
 
-    await forgotPasswordOtpMailTemplate(email,otp)
+     forgotPasswordOtpMailTemplate(email,otp)
     
     await Otp.create({email,otp})
   return  res.status(200).json({ message: otp });
