@@ -25,6 +25,7 @@ export async function validateGetUsers(req,res,next){
 
     try {
      await param('p')
+     .optional()
      .trim()
       .isIn(['me'])
       .run(req);

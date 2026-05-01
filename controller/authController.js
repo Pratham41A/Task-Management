@@ -4,37 +4,30 @@ import { Otp } from '../model/otp.js';
 import {forgotPasswordOtpMailTemplate} from '../service/mailTemplates.js'
 import { sanitize } from '../service/sanitize.js';
 import bcrypt from 'bcryptjs';
-export async function getUsers(req, res, next) {
-    const { p } = req.params;
-    const {userId}=req
-    var field
-    var value
-     if (p === 'me') {
-        field="_id";
-        value=userId;
-      }
-      else if (p===undefined){
-        field=null
-        value=null
-      }
-      else{
-        return res.status(400).json({ error: 'Invalid Parameter' });
-      }
-       const q = (field &&value )? { [field]: value } : {}; 
+export async function getUsers(req, res) {
+  const { p } = req.params;
+  const { userId } = req;
 
-      try {
-        const user = await User.findOne({ _id: userId });
-        if (user.username === 'ADMIN') {
-           const users = await User.find(q).lean();
-           return res.status(200).json({message:users});
-        }
-        if ( field==='_id') {
-    const users = await User.findById(q).lean();
-     return res.status(200).json({message:users});
-        }
-  
+  try {
+    const user = await User.findById(userId);
+
+    if (user.username === 'ADMIN') {
+      if (p === 'me') {
+        const user = await User.findById(userId).lean();
+        return res.status(200).json({ message: user });
+      }
+
+      const users = await User.find().lean();
+      return res.status(200).json({  message: users });
+    }
+
+    if (p === 'me') {
+      const user = await User.findById(userId).lean();
+      return res.status(200).json({ message: user });
+    }
+
   } catch (error) {
-   return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 }
 
